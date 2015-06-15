@@ -1,9 +1,16 @@
 # ruby-class-tracer-document
 
 
-Just takes the json generated from Ruby Class Tracer () and produces
+Just takes the json generated from Ruby Class Tracer (https://github.com/ewhitley/ruby-class-tracer) and produces
 
-* A 
+* A Bootstrap-based list of 
+** Profiled classes
+*** Instance variables
+*** Methods
+**** Calling parameters (and their types)
+**** Return types
+**** Local variables (and their types)
+* A D3js-based quick visualization of the dependencies between the profiled classes (if any).  Base types of other non-profiled objects (String, Hash, etc. are not included in the graph)
 
 
 Known issues:
