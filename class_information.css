@@ -156,7 +156,7 @@
     .container.var_table div.row {
     }
     .container.var_table div.var_head {
-      font-weight: bold;
+      font-weight: medium;
       color: #6e6e6e;
       background-color: #f5f5f5;
       border-left: 1px solid #dddddd;

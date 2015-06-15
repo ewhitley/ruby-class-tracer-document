@@ -174,7 +174,7 @@
             toc_items = [];
             doc_items = [];
 
-            var variable_header = "<div class=\"row var_head\"><div class=\"col-xs-4 col-md-3\">Name</div><div class=\"col-xs-2 col-md-1\">Options</div><div class=\"col-xs-12 col-md-8\">Type Details</div></div>"
+            var variable_header = "<div class=\"row var_head\"><div class=\"col-xs-4 col-md-3\">Name</div><div class=\"col-xs-2 col-md-1 text-center\">Options</div><div class=\"col-xs-12 col-md-8\">Type Details</div></div>"
 
 
             if (class_def.instance_vars && Object.keys(class_def.instance_vars).length > 0 ) {
