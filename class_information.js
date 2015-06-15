@@ -1,4 +1,12 @@
 
+    var json_path = "content/class_info.json"
+    var class_trace_debug = false
+
+    if (class_trace_debug == true) {
+        $("#debug_info_tab").removeClass("hide");
+    }
+
+
     var d3json = {}
 
     $( document ).ready(function() {
@@ -7,6 +15,10 @@
 
     function js_safe_name(name) {
         return name.replace(/[^A-Z0-9_]+/gi, "");
+    }
+
+    function strip_quotes(name) {
+        return name.replace(/[\'\"]+/gi, "");
     }
 
     //http://www.java2s.com/Tutorial/JavaScript/0220__Array/Usinganalphabeticalsortmethodonstrings.htm
@@ -24,12 +36,30 @@
     }
 
     function process_class_json() {
-        $.getJSON( "content/class_info.json", function( data ) {
+
+        var url = window.location.href;
+        var debug_data = []
+        debug_data.push( "<dt>JSON Path</dt><dd>" + json_path + "</dd>" );
+        debug_data.push( "<dt>Current URI</dt><dd>" + url + "</dd>" );
+        debug_data.push( "<dt>User Agent</dt><dd>" + navigator.userAgent + "</dd>" );
+
+
+        $.getJSON( json_path, function( data ) {
+
+        })
+          .fail(function() {
+            bummer = "<h1>Oops! How embarassing!</h1> <p>It appears we ran into an issue...</p>"
+            if (url.substring(0, 7) == "file://" && navigator.userAgent.indexOf("Chrome") > -1) {
+              bummer += "<h3>Chrome Police Have Seized Your JSON!</h3><p>Hey - it appears you're using Chrome and attempting to load JSON from a local file. Chrome's security policies don't currently allow this.</p><p>Please either load from a web server or use a different browser. Sorry!</p>"
+              $("#class_info div").html(bummer)
+              return;
+            }
+          })
+          .done(function( data ) {
 
           var class_docs_toc = [];
           var class_docs_body = [];
           var trace_info_body = [];
-
 
 
           d3json.name = data.json_class
@@ -61,7 +91,7 @@
           trace_info_body.push("<dt>Referenced Types</dt><dd>"+unique_referenced_types.length+"</dd>")
           uq_ref_types = []
           $.each( unique_referenced_types, function( idx, var_type ) {
-              uq_ref_types.push("<dd>"+var_type+"</dd>")
+              uq_ref_types.push("<dd>"+strip_quotes(var_type)+"</dd>")
           });
           trace_info_body.push("<dt>Referenced Types</dt>"+uq_ref_types.join(""))
 
@@ -76,7 +106,7 @@
                     //don't show ones where we refere back to our own type
                     // also - filter to the types we sampled so we can just show those dependencies
                     var c = {}
-                    c.name = var_type
+                    c.name = strip_quotes(var_type)
                     c.type = "typeclass"
                     d3child.children.push(c)
                 }
@@ -115,10 +145,10 @@
                    }
                    tooltip_text = badge_info == "opt" ? "Nilable" : ""
                    badge = " <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>"
-                   vars.push("<dt>"+var_name+badge+"</dt>")
+                   vars.push("<dt>"+strip_quotes(var_name)+badge+"</dt>")
 
                     $.each ( var_info.types, function( key, var_type){
-                       vars.push("<dd class=\"data_type\">"+var_type+"</dd>")
+                       vars.push("<dd class=\"data_type\">"+strip_quotes(var_type)+"</dd>")
                     });
                 });
                 doc_items.push("<dl class=\"dl-horizontal\">"+vars.join("")+"</dl><div class=\"clear\"/>")
@@ -149,9 +179,9 @@
                        }
                        tooltip_text = badge_info == "opt" ? "Optional / Nilable" : ""
                        badge = " <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>"
-                       vars.push("<dt>"+var_name+badge+"</dt>")
+                       vars.push("<dt>"+strip_quotes(var_name)+badge+"</dt>")
                         $.each ( var_info.types, function( key, var_type){
-                           vars.push("<dd class=\"data_type\">"+var_type+"</dd>")
+                           vars.push("<dd class=\"data_type\">"+strip_quotes(var_type)+"</dd>")
                         });
                     });
                     doc_items.push("<dl class=\"dl-horizontal\">"+vars.join("")+"</dl><div class=\"clear\"/>")
@@ -170,10 +200,10 @@
 
                     tooltip_text = badge_info == "opt" ? "Nilable" : ""
                     badge = " <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>"
-                    vars.push("<dt>"+var_name+badge+"</dt>")
+                    vars.push("<dt>"+strip_quotes(var_name)+badge+"</dt>")
 
                     $.each ( method_def.return_types, function( var_name, var_type){
-                       vars.push("<dd class=\"data_type\">"+var_type+"</dd>")
+                       vars.push("<dd class=\"data_type\">"+strip_quotes(var_type)+"</dd>")
                     });
                     doc_items.push("<dl class=\"dl-horizontal\">"+vars.join("")+"</dl><div class=\"clear\"/>")
                 }
@@ -196,10 +226,10 @@
                        }
                        tooltip_text = badge_info == "opt" ? "Nilable" : ""
                        badge = " <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>"
-                       vars.push("<dt>"+var_name+badge+"</dt>")
+                       vars.push("<dt>"+strip_quotes(var_name)+badge+"</dt>")
 
                         $.each ( var_info.types, function( key, var_type){
-                           vars.push("<dd class=\"data_type\">"+var_type+"</dd>")
+                           vars.push("<dd class=\"data_type\">"+strip_quotes(var_type)+"</dd>")
                         });
                     });
                     doc_items.push("<dl class=\"dl-horizontal\">"+vars.join("")+"</dl><div class=\"clear\"/>")
@@ -219,6 +249,12 @@
           $("#class_docs_toc").html(class_docs_toc.join( "" ))
           $("#class_docs_body").html(class_docs_body.join( "" ))
           $("#trace_info_data").html("<dl class=\"dl-horizontal\">"+trace_info_body.join( "" )+"</dl><div class=\"clear\"/>")
+
+          $("#debug_info_data").html("<dl class=\"dl-horizontal\">" + debug_data.join( "" ) + "</dl>")
+
+          // } else {
+          //     $("#debug_info_tab").hide()
+          // }
 
           //need to call this in here since loading json is asynchronous
           process_d3();

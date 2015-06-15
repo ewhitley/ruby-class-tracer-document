@@ -25,7 +25,6 @@ reference: http://getbootstrap.com/css/#overview
 
 <body>
 
-
     <!-- Docs master nav -->
     <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
       <div class="container">
@@ -39,6 +38,7 @@ reference: http://getbootstrap.com/css/#overview
   <li class="active"><a href="#class_info" data-toggle="tab">Methods and Variables</a></li>
   <li ><a href="#type_dependencies" data-toggle="tab">Type Dependencies</a></li>
   <li ><a href="#trace_info" data-toggle="tab">Trace Information</a></li>
+  <li ><a href="#debug_info" data-toggle="tab" id="debug_info_tab" class="hide">Debug Info</a></li>
 </ul>
 <div class="tab-content">
    <div id="class_info" class="tab-pane active">
@@ -64,6 +64,12 @@ reference: http://getbootstrap.com/css/#overview
         <h1>Trace Information</h1>
         <div id="trace_info_data"></div>
     </div>
+   </div>
+   <div id="debug_info" class="tab-pane">
+      <div id="debug_info_body">
+        <h1>Debugging Information</h1>
+        <div id="debug_info_data"></div>
+      </div>
    </div>
 </div>
 
