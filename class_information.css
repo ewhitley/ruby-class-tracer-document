@@ -200,3 +200,9 @@
     h4 {
       color: #999999;
     }
+
+    .bs-sidenav {
+      height: auto;
+      max-height: 600px;
+      overflow-x: hidden;
+    }
