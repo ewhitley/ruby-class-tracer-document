@@ -71,7 +71,11 @@
 
           $.each( data.classes, function( class_name, class_def ) {
              all_class_names.push(class_name)
-             all_referenced_types = all_referenced_types.concat(class_def.referenced_types)
+             //all_referenced_types = all_referenced_types.concat(class_def.referenced_types)
+             //the above is better, but I need to strip the quotes for now
+              $.each( class_def.referenced_types, function( idx, var_type ) {
+                all_referenced_types.push(strip_quotes(var_type))
+              });
           });
 
           var unique_referenced_types = [];
@@ -88,7 +92,7 @@
           trace_info_body.push("<dt>Last End Time</dt><dd>"+data.end_time+"</dd>")   
           trace_info_body.push("<dt>Last Trace Duration</dt><dd>"+data.trace_duration+"</dd>")   
           trace_info_body.push("<dt>Classes Profiled</dt><dd>"+all_class_names.length+"</dd>")
-          trace_info_body.push("<dt>Referenced Types</dt><dd>"+unique_referenced_types.length+"</dd>")
+          trace_info_body.push("<dt>Referenced Type #</dt><dd>"+unique_referenced_types.length+"</dd>")
           uq_ref_types = []
           $.each( unique_referenced_types, function( idx, var_type ) {
               uq_ref_types.push("<dd>"+strip_quotes(var_type)+"</dd>")
