@@ -35,6 +35,49 @@
          }
     }
 
+    function draw_var_info_row(var_name, var_info, context){
+
+        vars = []
+
+        req = !var_info.arg_type ? "" : var_info.arg_type
+        nilable = !var_info.nilable ? false : var_info.nilable
+
+        if (!nilable && var_info.types.indexOf("NilClass") > -1) {
+          nilable = true
+        }
+
+        badges = []
+        badges.push("")
+
+        if (nilable) {
+          tooltip_text = nilable == true ? "Nilable" : ""
+          badge_info = "nil"
+          badges.push(" <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>")
+        }
+        if (nilable && req == "opt") {
+          tooltip_text = nilable == true ? "Optional" : ""
+          badge_info = "opt"
+          badges.push(" <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>")
+        }
+
+        vars.push("<div class=\"row var_content\">")
+        vars.push("<div class=\"equalheight\">")
+        vars.push("<div class=\"col-xs-4 col-md-3 var_data\">"+strip_quotes(var_name)+"</div>")
+        vars.push("<div class=\"col-xs-2 col-md-1 text-center var_badges\">"+badges.join("")+"<br></div>") //don't judge me... ;)
+        var_emit = []
+        $.each ( var_info.types, function( key, var_type){
+           css_label = "label-default"
+           if (var_type == "NilClass") { css_label = "label-info" }
+           var_emit.push("<span class=\"label label-vartype "+css_label+"\">"+strip_quotes(var_type)+"</span>")
+        });
+        vars.push("<div class=\"col-xs-12 col-md-8 var_type\">"+var_emit.join("")+"</div>")
+        vars.push("</div>")
+        vars.push("</div>")
+
+        return vars.join("")
+
+    }
+
     function process_class_json() {
 
         var url = window.location.href;
@@ -121,12 +164,17 @@
             // if (class_name != "HQMF2::Coded" & class_name != "HQMF::Attribute" & class_name != "HQMF2::Precondition") {
             //     return true
             // }
+            // if (class_name != "HQMF2::Precondition") {
+            //     return true
+            // }
 
   
             js_safe_class_name = js_safe_name(class_name)
 
             toc_items = [];
             doc_items = [];
+
+            var variable_header = "<div class=\"row var_head\"><div class=\"col-xs-4 col-md-3\">Name</div><div class=\"col-xs-2 col-md-1\">Options</div><div class=\"col-xs-12 col-md-8\">Type Details</div></div>"
 
 
             if (class_def.instance_vars && Object.keys(class_def.instance_vars).length > 0 ) {
@@ -136,26 +184,9 @@
                 vars = []
                 doc_items.push("<h3 id=\""+toc_link+"\">Instance Variables</h3>")
                 $.each ( class_def.instance_vars, function( var_name, var_info){
-
-                   req = !var_info.arg_type ? "" : var_info.arg_type
-                   nilable = !var_info.nilable ? false : var_info.nilable
-                   badge_info = "req"
-                   if (req == "opt") {
-                      badge_info = "opt"
-                   } else if (req == "req") {
-                      badge_info = "req"
-                   } else if (nilable == true) {
-                      badge_info = "opt"
-                   }
-                   tooltip_text = badge_info == "opt" ? "Nilable" : ""
-                   badge = " <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>"
-                   vars.push("<dt>"+strip_quotes(var_name)+badge+"</dt>")
-
-                    $.each ( var_info.types, function( key, var_type){
-                       vars.push("<dd class=\"data_type\">"+strip_quotes(var_type)+"</dd>")
-                    });
+                   vars.push(draw_var_info_row(var_name, var_info, "instance_vars"))
                 });
-                doc_items.push("<dl class=\"dl-horizontal\">"+vars.join("")+"</dl><div class=\"clear\"/>")
+                doc_items.push("<div class=\"container var_table\">"+variable_header + vars.join("")+"</div>")
 
             }
             $.each ( class_def.methods, function( method_name, method_def){
@@ -164,79 +195,34 @@
 
                 toc_link = js_safe_class_name + "-" + js_safe_method_name
                 toc_items.push("<li><a href=\"#"+toc_link+"\">"+method_name+"</a></li>")
-
                 doc_items.push("<h3 id=\""+toc_link+"\">"+method_name+"</h3>")
 
                 if (method_def.calling_vars && Object.keys(method_def.calling_vars).length > 0 ) {
                     vars = []
                     doc_items.push("<h4>Calling Parameters</h3>")
                     $.each ( method_def.calling_vars, function( var_name, var_info){
-                       req = !var_info.arg_type ? "" : var_info.arg_type
-                       nilable = !var_info.nilable ? false : var_info.nilable
-                       badge_info = "req"
-                       if (req == "opt") {
-                          badge_info = "opt"
-                       } else if (req == "req") {
-                          badge_info = "req"
-                       } else if (nilable == true) {
-                          badge_info = "opt"
-                       }
-                       tooltip_text = badge_info == "opt" ? "Optional / Nilable" : ""
-                       badge = " <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>"
-                       vars.push("<dt>"+strip_quotes(var_name)+badge+"</dt>")
-                        $.each ( var_info.types, function( key, var_type){
-                           vars.push("<dd class=\"data_type\">"+strip_quotes(var_type)+"</dd>")
-                        });
+                       vars.push(draw_var_info_row(var_name, var_info, "calling_vars"))
                     });
-                    doc_items.push("<dl class=\"dl-horizontal\">"+vars.join("")+"</dl><div class=\"clear\"/>")
+                    doc_items.push("<div class=\"container var_table\">"+variable_header + vars.join("")+"</div>")
                 }
 
                 if (method_def.return_types && Object.keys(method_def.return_types).length > 0 ) {
                     vars = []
-                    doc_items.push("<h4>Return Types</h3>")
-
                     var_name = "Return"
-                    badge_info = "req"
-                     
-                    if (method_def.return_types.indexOf("NilClass") > -1) {
-                        badge_info = "opt"
-                    } 
-
-                    tooltip_text = badge_info == "opt" ? "Nilable" : ""
-                    badge = " <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>"
-                    vars.push("<dt>"+strip_quotes(var_name)+badge+"</dt>")
-
-                    $.each ( method_def.return_types, function( var_name, var_type){
-                       vars.push("<dd class=\"data_type\">"+strip_quotes(var_type)+"</dd>")
-                    });
-                    doc_items.push("<dl class=\"dl-horizontal\">"+vars.join("")+"</dl><div class=\"clear\"/>")
+                    var_info = {}
+                    var_info.types = method_def.return_types
+                    doc_items.push("<h4>Return Types</h3>")
+                    vars.push(draw_var_info_row(var_name, var_info, "return"))
+                    doc_items.push("<div class=\"container var_table\">"+variable_header + vars.join("")+"</div>")
                 }
-
 
                 if (method_def.local_vars && Object.keys(method_def.local_vars).length > 0 ) {
                     vars = []
                     doc_items.push("<h4>Local Variables</h3>")
                     $.each ( method_def.local_vars, function( var_name, var_info){
-
-                       req = !var_info.arg_type ? "" : var_info.arg_type
-                       nilable = !var_info.nilable ? false : var_info.nilable
-                       badge_info = "req"
-                       if (req == "opt") {
-                          badge_info = "opt"
-                       } else if (req == "req") {
-                          badge_info = "req"
-                       } else if (nilable == true) {
-                          badge_info = "opt"
-                       }
-                       tooltip_text = badge_info == "opt" ? "Nilable" : ""
-                       badge = " <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>"
-                       vars.push("<dt>"+strip_quotes(var_name)+badge+"</dt>")
-
-                        $.each ( var_info.types, function( key, var_type){
-                           vars.push("<dd class=\"data_type\">"+strip_quotes(var_type)+"</dd>")
-                        });
+                       vars.push(draw_var_info_row(var_name, var_info, "local_vars"))
                     });
-                    doc_items.push("<dl class=\"dl-horizontal\">"+vars.join("")+"</dl><div class=\"clear\"/>")
+                    doc_items.push("<div class=\"container var_table\">"+variable_header + vars.join("")+"</div>")
                 }
 
             });
