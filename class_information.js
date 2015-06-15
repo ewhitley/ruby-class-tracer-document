@@ -242,14 +242,12 @@
 
           $("#debug_info_data").html("<dl class=\"dl-horizontal\">" + debug_data.join( "" ) + "</dl>")
 
-          // } else {
-          //     $("#debug_info_tab").hide()
-          // }
-
           //need to call this in here since loading json is asynchronous
           process_d3();
 
-          $('[data-toggle="tooltip"]').tooltip()
+          //this with the div height cheat = bad
+          // should probably really just make everything tables...
+          //$('[data-toggle="tooltip"]').tooltip()
 
 
         });
