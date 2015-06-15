@@ -1,0 +1,510 @@
+{
+  "children": [
+    {
+      "children": [],
+      "name": "HQMF1::Attribute"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF1::Document"
+        },
+        {
+          "name": "HQMF1::Precondition"
+        },
+        {
+          "name": "HQMF1::Restriction"
+        }
+      ],
+      "name": "HQMF1::Comparison"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::InstanceCounter"
+        }
+      ],
+      "name": "HQMF1::DataCriteria"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF1::Attribute"
+        },
+        {
+          "name": "HQMF1::DataCriteria"
+        },
+        {
+          "name": "HQMF1::PopulationCriteria"
+        },
+        {
+          "name": "HQMF::InstanceCounter"
+        }
+      ],
+      "name": "HQMF1::Document"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF1::Document"
+        },
+        {
+          "name": "HQMF1::Precondition"
+        }
+      ],
+      "name": "HQMF1::PopulationCriteria"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF1::Comparison"
+        },
+        {
+          "name": "HQMF1::Document"
+        },
+        {
+          "name": "HQMF1::Restriction"
+        }
+      ],
+      "name": "HQMF1::Precondition"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF1::Value"
+        }
+      ],
+      "name": "HQMF1::Range"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF1::Comparison"
+        },
+        {
+          "name": "HQMF1::Document"
+        },
+        {
+          "name": "HQMF1::Precondition"
+        },
+        {
+          "name": "HQMF1::Range"
+        },
+        {
+          "name": "HQMF::Coded"
+        }
+      ],
+      "name": "HQMF1::Restriction"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF1::Attribute"
+        },
+        {
+          "name": "HQMF1::Comparison"
+        },
+        {
+          "name": "HQMF1::DataCriteria"
+        },
+        {
+          "name": "HQMF1::Document"
+        },
+        {
+          "name": "HQMF1::PopulationCriteria"
+        },
+        {
+          "name": "HQMF1::Precondition"
+        },
+        {
+          "name": "HQMF1::Range"
+        },
+        {
+          "name": "HQMF1::Restriction"
+        }
+      ],
+      "name": "HQMF1::Utilities"
+    },
+    {
+      "children": [],
+      "name": "HQMF1::Value"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Coded"
+        },
+        {
+          "name": "HQMF::ED"
+        },
+        {
+          "name": "HQMF::Identifier"
+        }
+      ],
+      "name": "HQMF::Attribute"
+    },
+    {
+      "children": [],
+      "name": "HQMF::Coded"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Converter::SimpleDataCriteria"
+        },
+        {
+          "name": "HQMF::Converter::SimpleOperator"
+        },
+        {
+          "name": "HQMF::Converter::SimplePopulationCriteria"
+        },
+        {
+          "name": "HQMF::Converter::SimplePrecondition"
+        },
+        {
+          "name": "HQMF::Converter::SimpleRestriction"
+        },
+        {
+          "name": "HQMF::DataCriteria"
+        },
+        {
+          "name": "HQMF::DataCriteriaConverter"
+        }
+      ],
+      "name": "HQMF::ComparisonConverter"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF1::Attribute"
+        },
+        {
+          "name": "HQMF1::Comparison"
+        },
+        {
+          "name": "HQMF1::DataCriteria"
+        },
+        {
+          "name": "HQMF1::Document"
+        },
+        {
+          "name": "HQMF1::PopulationCriteria"
+        },
+        {
+          "name": "HQMF1::Precondition"
+        },
+        {
+          "name": "HQMF1::Range"
+        },
+        {
+          "name": "HQMF1::Restriction"
+        },
+        {
+          "name": "HQMF1::Value"
+        },
+        {
+          "name": "HQMF::Coded"
+        },
+        {
+          "name": "HQMF::Reference"
+        },
+        {
+          "name": "HQMF::TemporalReference"
+        }
+      ],
+      "name": "HQMF::Conversion::Utilities"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::DataCriteria"
+        }
+      ],
+      "name": "HQMF::Converter::SimpleDataCriteria"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Coded"
+        },
+        {
+          "name": "HQMF::Range"
+        }
+      ],
+      "name": "HQMF::Converter::SimpleOperator"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Converter::SimpleRestriction"
+        },
+        {
+          "name": "HQMF::Reference"
+        }
+      ],
+      "name": "HQMF::Converter::SimplePrecondition"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Converter::SimpleOperator"
+        },
+        {
+          "name": "HQMF::Converter::SimplePrecondition"
+        },
+        {
+          "name": "HQMF::DataCriteria"
+        }
+      ],
+      "name": "HQMF::Converter::SimpleRestriction"
+    },
+    {
+      "children": [],
+      "name": "HQMF::Counter"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::EffectiveTime"
+        },
+        {
+          "name": "HQMF::TemporalReference"
+        }
+      ],
+      "name": "HQMF::DataCriteria"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Converter::SimpleDataCriteria"
+        },
+        {
+          "name": "HQMF::Converter::SimplePrecondition"
+        },
+        {
+          "name": "HQMF::DataCriteria"
+        },
+        {
+          "name": "HQMF::EffectiveTime"
+        },
+        {
+          "name": "HQMF::Range"
+        }
+      ],
+      "name": "HQMF::DataCriteriaConverter"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Attribute"
+        },
+        {
+          "name": "HQMF::Converter::SimpleDataCriteria"
+        },
+        {
+          "name": "HQMF::Converter::SimplePopulationCriteria"
+        },
+        {
+          "name": "HQMF::DataCriteria"
+        },
+        {
+          "name": "HQMF::EffectiveTime"
+        }
+      ],
+      "name": "HQMF::Document"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Attribute"
+        },
+        {
+          "name": "HQMF::ComparisonConverter"
+        },
+        {
+          "name": "HQMF::Converter::SimpleDataCriteria"
+        },
+        {
+          "name": "HQMF::Converter::SimplePopulationCriteria"
+        },
+        {
+          "name": "HQMF::DataCriteria"
+        },
+        {
+          "name": "HQMF::DataCriteriaConverter"
+        },
+        {
+          "name": "HQMF::Document"
+        },
+        {
+          "name": "HQMF::EffectiveTime"
+        },
+        {
+          "name": "HQMF::PopulationCriteriaConverter"
+        },
+        {
+          "name": "HQMF::Value"
+        }
+      ],
+      "name": "HQMF::DocumentConverter"
+    },
+    {
+      "children": [],
+      "name": "HQMF::ED"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Value"
+        }
+      ],
+      "name": "HQMF::EffectiveTime"
+    },
+    {
+      "children": [],
+      "name": "HQMF::Identifier"
+    },
+    {
+      "children": [],
+      "name": "HQMF::InstanceCounter"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Converter::SimpleDataCriteria"
+        },
+        {
+          "name": "HQMF::Converter::SimplePrecondition"
+        },
+        {
+          "name": "HQMF::Converter::SimpleRestriction"
+        },
+        {
+          "name": "HQMF::DataCriteriaConverter"
+        },
+        {
+          "name": "HQMF::Range"
+        },
+        {
+          "name": "HQMF::TemporalReference"
+        }
+      ],
+      "name": "HQMF::OperatorConverter"
+    },
+    {
+      "children": [],
+      "name": "HQMF::Parser::V1Parser"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Converter::SimplePrecondition"
+        }
+      ],
+      "name": "HQMF::PopulationCriteria"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Converter::SimplePopulationCriteria"
+        },
+        {
+          "name": "HQMF::Converter::SimplePrecondition"
+        },
+        {
+          "name": "HQMF::DataCriteriaConverter"
+        }
+      ],
+      "name": "HQMF::PopulationCriteriaConverter"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Converter::SimplePrecondition"
+        },
+        {
+          "name": "HQMF::Converter::SimpleRestriction"
+        },
+        {
+          "name": "HQMF::Reference"
+        }
+      ],
+      "name": "HQMF::Precondition"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Converter::SimplePrecondition"
+        },
+        {
+          "name": "HQMF::Converter::SimpleRestriction"
+        },
+        {
+          "name": "HQMF::DataCriteriaConverter"
+        }
+      ],
+      "name": "HQMF::PreconditionConverter"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Coded"
+        },
+        {
+          "name": "HQMF::Converter::SimpleOperator"
+        },
+        {
+          "name": "HQMF::Converter::SimplePrecondition"
+        },
+        {
+          "name": "HQMF::Converter::SimpleRestriction"
+        },
+        {
+          "name": "HQMF::DataCriteria"
+        },
+        {
+          "name": "HQMF::DataCriteriaConverter"
+        },
+        {
+          "name": "HQMF::Range"
+        },
+        {
+          "name": "HQMF::Reference"
+        }
+      ],
+      "name": "HQMF::PreconditionExtractor"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Value"
+        }
+      ],
+      "name": "HQMF::Range"
+    },
+    {
+      "children": [],
+      "name": "HQMF::Reference"
+    },
+    {
+      "children": [
+        {
+          "name": "HQMF::Range"
+        },
+        {
+          "name": "HQMF::Reference"
+        }
+      ],
+      "name": "HQMF::TemporalReference"
+    },
+    {
+      "children": [],
+      "name": "HQMF::Value"
+    },
+    {
+      "children": [],
+      "name": "HealthDataStandards::Util::HQMFTemplateHelper"
+    }
+  ],
+  "name": "ClassTraceUtils::ClassTracer"
+}
