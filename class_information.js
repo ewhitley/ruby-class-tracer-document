@@ -188,9 +188,9 @@
             // if (class_name != "HQMF2::Precondition") {
             //     return true
             // }
-            if (class_name != "HQMF::PopulationCriteriaConverter") {
-                return true
-            }
+            // if (class_name != "HQMF::PopulationCriteriaConverter") {
+            //     return true
+            // }
   
             js_safe_class_name = js_safe_name(class_name)
 
