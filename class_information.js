@@ -1,6 +1,6 @@
 
-    //var json_path = "content/hqmf_export.json"
-    var json_path = "content/SimpsonsProfile.json"
+    var json_path = "content/hqmf_export.json"
+    //var json_path = "content/SimpsonsProfile.json"
     
     var class_trace_debug = false
 
@@ -56,21 +56,23 @@
 
         badges = []
         badges.push("")
+        var_opt = ""
 
         if (nilable) {
           tooltip_text = nilable == true ? "Nilable" : ""
           badge_info = "nil"
           badges.push(" <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>")
         }
-        if (nilable && req == "opt") {
+        if (req == "opt") {
           tooltip_text = nilable == true ? "Optional" : ""
           badge_info = "opt"
+          var_opt = "label label-vartype label-opttype"
           badges.push(" <a data-toggle=\"tooltip\" data-placement=\"top\" title=\""+tooltip_text+"\"><span class=\"glyphicon glyphicon-record arg_type_"+badge_info+" \" aria-hidden=\"true\"></span></a>")
         }
 
         vars.push("<div class=\"row var_content\">")
         vars.push("<div class=\"equalheight\">")
-        vars.push("<div class=\"col-xs-4 col-md-3 var_data\">"+strip_quotes(var_name)+"</div>")
+        vars.push("<div class=\"col-xs-4 col-md-3 var_data\"><span class=\""+var_opt+"\">"+strip_quotes(var_name)+"</span></div>")
         vars.push("<div class=\"col-xs-2 col-md-1 text-center var_badges\">"+badges.join("")+"<br></div>") //don't judge me... ;)
         var_emit = []
         $.each ( var_info.types, function( key, var_type){

@@ -131,6 +131,11 @@
         stroke-width: 1.5px;
     }
 
+
+
+
+
+
     #d3classviz {
         margin-top:25px;
         margin-bottom:25px;
@@ -182,6 +187,11 @@
       margin-bottom: 5px;
       font-weight:normal;
       font-size: 100%;
+    }
+
+    .label-opttype {
+      margin-top: 0px;
+      background-color: #5cb85c;
     }
 
     .var_data, .var_badges {
