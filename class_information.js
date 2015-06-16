@@ -188,7 +188,9 @@
             // if (class_name != "HQMF2::Precondition") {
             //     return true
             // }
-
+            if (class_name != "HQMF::PopulationCriteriaConverter") {
+                return true
+            }
   
             js_safe_class_name = js_safe_name(class_name)
 
@@ -204,13 +206,12 @@
                 toc_link = js_safe_class_name + "-" + js_safe_name("instance_vars")
                 toc_items.push("<li><a href=\"#"+toc_link+"\">Instance Variables</a></li>")   
 
-                vars = []
+                var vars = []
                 doc_items.push("<h3 id=\""+toc_link+"\">Instance Variables</h3>")
                 $.each ( class_def.instance_vars, function( var_name, var_info){
                    vars.push(draw_var_info_row(var_name, var_info, "instance_vars"))
                 });
                 doc_items.push("<div class=\"container var_table\">"+variable_header + vars.join("")+"</div>")
-
             }
             $.each ( class_def.methods, function( method_name, method_def){
 
@@ -239,7 +240,7 @@
                 doc_items.push("<div><div class=\"method_title\">"+method_title+"</div>"+method_stats+"</div><div class=\"clear\"/>")
 
                 if (method_def.calling_vars && Object.keys(method_def.calling_vars).length > 0 ) {
-                    vars = []
+                    var vars = []
                     doc_items.push("<h4>Calling Parameters</h3>")
                     $.each ( method_def.calling_vars, function( var_name, var_info){
                        vars.push(draw_var_info_row(var_name, var_info, "calling_vars"))
@@ -248,7 +249,7 @@
                 }
 
                 if (method_def.return_types && Object.keys(method_def.return_types).length > 0 ) {
-                    vars = []
+                    var vars = []
                     var_name = "Return"
                     var_info = {}
                     var_info.types = method_def.return_types
@@ -258,7 +259,7 @@
                 }
 
                 if (method_def.local_vars && Object.keys(method_def.local_vars).length > 0 ) {
-                    vars = []
+                    var vars = []
                     doc_items.push("<h4>Local Variables</h3>")
                     $.each ( method_def.local_vars, function( var_name, var_info){
                        vars.push(draw_var_info_row(var_name, var_info, "local_vars"))
