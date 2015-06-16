@@ -2,7 +2,8 @@
 <!--
 NOTE - apparently Bootstrap _really_ wants the doctype here or the scrolling nav blows up
 reference: http://getbootstrap.com/css/#overview
--->
+-->     
+
 <html lang="en">
 <head>
     <title>Class Trace Profile</title>
@@ -10,8 +11,13 @@ reference: http://getbootstrap.com/css/#overview
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
     <script src="support/d3/d3.js"></script>
+
+    <link href="support/circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+    <link href="csupport/circliful/ss/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="support/circliful/js/jquery.circliful.min.js"></script>
+
+
 
     <link href="class_information.css" rel="stylesheet">
     <!-- Documentation extras -->
@@ -39,7 +45,7 @@ reference: http://getbootstrap.com/css/#overview
 
 <ul class="nav nav-tabs">
   <li class="active"><a href="#class_info" data-toggle="tab">Methods and Variables</a></li>
-  <li ><a href="#type_dependencies" data-toggle="tab">Type Dependencies</a></li>
+  <li ><a href="#type_dependencies" data-toggle="tab" class="hide">Type Dependencies</a></li>
   <li ><a href="#trace_info" data-toggle="tab">Trace Information</a></li>
   <li ><a href="#debug_info" data-toggle="tab" id="debug_info_tab" class="hide">Debug Info</a></li>
 </ul>
@@ -97,7 +103,6 @@ reference: http://getbootstrap.com/css/#overview
 </script>
 
 <script src="class_information.js"></script>
-
 
 </body>
 </html>

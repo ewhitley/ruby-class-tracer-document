@@ -206,3 +206,43 @@
       max-height: 600px;
       overflow-x: hidden;
     }
+
+    .method_title {
+      float:left;
+    }
+    .circliful_container {
+      height:75px;
+      float:right;
+      overflow:hidden;
+    }
+    .circliful_label {
+      font-size:75%;
+      color: #dddddd;
+      float:right;
+      visibility:hidden;
+      width:0px;
+    }
+    .stats_container {
+      float:right;
+      vertical-align: middle;
+      margin-top:5px;
+    }
+    .stats_container div {
+      margin:0px;
+      padding:0px;
+      overflow:hidden;
+    }
+    .stats_container span.stats_label {
+      padding-right:10px;
+      color: #cccccc;
+    }
+    .stats_container div.fill_bar_bg {
+      width:75px;
+      background-color: #efefef;
+    }
+    .progress-bar-class {
+      background-color:orange;
+    }
+    .progress-bar-all {
+      background-color:yellow;
+    }
