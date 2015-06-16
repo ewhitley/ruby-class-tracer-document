@@ -288,9 +288,11 @@
           //need to call this in here since loading json is asynchronous
           process_d3_tree();
 
-          //this with the div height cheat = bad
-          // should probably really just make everything tables...
-          //$('[data-toggle="tooltip"]').tooltip()
+          $('#class_docs_toc').on('activate.bs.scrollspy', function() { 
+              var selected_element = $(this).find("li.active a").first().text();
+              $('#currentFocus').text(selected_element)
+          });
+
 
           $( ".collapse" ).each(function() {
             $( this ).collapse('show');
