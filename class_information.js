@@ -204,14 +204,14 @@
 
             if (class_def.instance_vars && Object.keys(class_def.instance_vars).length > 0 ) {
                 toc_link = js_safe_class_name + "-" + js_safe_name("instance_vars")
-                toc_items.push("<li><a href=\"#"+toc_link+"\">Instance Variables</a></li>")   
+                toc_items.push("<li><a href=\"#"+toc_link+"\" >Instance Variables</a></li>")   
 
                 var vars = []
-                doc_items.push("<h3 id=\""+toc_link+"\">Instance Variables</h3>")
+                doc_items.push("<h3 id=\""+toc_link+"\"><a href=\"#"+toc_link+"_panel\" data-toggle=\"collapse\" aria-expanded=\"true\">Instance Variables</a></h3>")
                 $.each ( class_def.instance_vars, function( var_name, var_info){
                    vars.push(draw_var_info_row(var_name, var_info, "instance_vars"))
                 });
-                doc_items.push("<div class=\"container var_table\">"+variable_header + vars.join("")+"</div>")
+                doc_items.push("<div class=\"collapse container var_table\" id=\""+toc_link+"_panel\" >"+variable_header + vars.join("")+"</div>")
             }
             $.each ( class_def.methods, function( method_name, method_def){
 
@@ -237,8 +237,8 @@
 
                 //method_stats = "<div class=\"circliful_label\">Call Frequency</div><div class=\"circliful_container\" data-dimension=\"125\" data-text=\""+pct_called+"%\" data-info=\""+times_called+" / "+total_times_called+"\" data-width=\"10\" data-fontsize=\"14\" data-percent=\""+pct_called+"\" data-fgcolor=\"#7ea568\" data-bgcolor=\"#eee\" data-type=\"half\" data-fill=\"#ddd\"></div>"
 
-                doc_items.push("<div><div class=\"method_title\">"+method_title+"</div>"+method_stats+"</div><div class=\"clear\"/>")
-
+                doc_items.push("<div><div class=\"method_title\"><a href=\"#"+toc_link+"_panel\" data-toggle=\"collapse\" aria-expanded=\"true\">"+method_title+"</a></div>"+method_stats+"</div><div class=\"clear\"/>")
+                doc_items.push("<div class=\"collapse container var_table\" id=\""+toc_link+"_panel\" >")
                 if (method_def.calling_vars && Object.keys(method_def.calling_vars).length > 0 ) {
                     var vars = []
                     doc_items.push("<h4>Calling Parameters</h3>")
@@ -266,6 +266,7 @@
                     });
                     doc_items.push("<div class=\"container var_table\">"+variable_header + vars.join("")+"</div>")
                 }
+                doc_items.push("</div>")
 
             });
 
@@ -291,9 +292,10 @@
           // should probably really just make everything tables...
           //$('[data-toggle="tooltip"]').tooltip()
 
-          $( ".circliful_container" ).each(function() {
-            $( this ).circliful();
+          $( ".collapse" ).each(function() {
+            $( this ).collapse('show');
           });
+
 
         });
     }
